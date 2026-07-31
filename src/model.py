@@ -54,3 +54,4 @@ def load_or_create_model(path: str, device: str = "cpu") -> ChessValueNet:
         print(f"لا يوجد موديل محفوظ في {path}، تم إنشاء موديل جديد عشوائي")
     model.to(device)
     return model
+  

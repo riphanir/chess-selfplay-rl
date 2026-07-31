@@ -42,3 +42,4 @@ def board_to_tensor(board: chess.Board) -> np.ndarray:
     tensor[12, :, :] = 1.0 if board.turn == chess.WHITE else 0.0
 
     return tensor
+  

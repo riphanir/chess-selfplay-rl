@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+data/latest_run.npz
+data/last_selfplay_summary.txt
+data/last_train_loss.txt
+data/last_eval_winrate.txt
+.venv/
+*.egg-info/

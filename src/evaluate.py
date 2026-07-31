@@ -14,7 +14,8 @@ from .model import load_or_create_model
 from .agent import choose_move
 
 
-def play_match(model_a, model_b, num_games: int, max_moves: int, device: str):
+def play_match(model_a, model_b, num_games: int, max_moves: int, device: str,
+               time_limit: float, max_depth: int):
     """model_a يلعب ضد model_b، بالتبادل بالأبيض والأسود. يرجع (فوز_a, فوز_b, تعادل)."""
     wins_a, wins_b, draws = 0, 0, 0
 
@@ -27,7 +28,8 @@ def play_match(model_a, model_b, num_games: int, max_moves: int, device: str):
             current_model = (
                 model_a if (board.turn == chess.WHITE) == a_is_white else model_b
             )
-            move = choose_move(current_model, board, epsilon=0.0, device=device)
+            move = choose_move(current_model, board, epsilon=0.0, device=device,
+                                time_limit=time_limit, max_depth=max_depth)
             if move is None:
                 break
             board.push(move)
@@ -51,6 +53,8 @@ def main():
     parser.add_argument("--games", type=int, default=10)
     parser.add_argument("--max-moves", type=int, default=60)
     parser.add_argument("--device", default="cpu")
+    parser.add_argument("--time-limit", type=float, default=0.5)
+    parser.add_argument("--search-depth", type=int, default=8)
     args = parser.parse_args()
 
     device = args.device
@@ -71,7 +75,8 @@ def main():
     baseline.eval()
 
     wins_current, wins_baseline, draws = play_match(
-        current, baseline, args.games, args.max_moves, device
+        current, baseline, args.games, args.max_moves, device,
+        args.time_limit, args.search_depth,
     )
 
     win_rate = (wins_current + 0.5 * draws) / max(args.games, 1) * 100
@@ -88,3 +93,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    

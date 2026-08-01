@@ -1,0 +1,2 @@
+timestamp_utc,games_played,wins_white,wins_black,draws,avg_game_length,train_loss,winrate_vs_baseline_pct
+2026-08-01T11:30:07+00:00,16,0,0,16,60.00,0.5000,50.0

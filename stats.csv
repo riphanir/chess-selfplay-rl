@@ -1,3 +1,0 @@
-timestamp_utc,games_played,wins_white,wins_black,draws,avg_game_length,train_loss,winrate_vs_baseline_pct
-2026-07-31T22:32:59+00:00,16,1,0,15,58.12,0.0329,50.0
-2026-08-01T08:06:56+00:00,16,2,1,13,55.44,0.0831,50.0
